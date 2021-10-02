@@ -2,6 +2,7 @@ from balance import app
 from flask import render_template, request, redirect, url_for, flash
 from balance.models import DBManager
 from balance.forms import MovimientoFormulario
+from datetime import Date
 
 ruta_basedatos = app.config.get("RUTA_BASE_DE_DATOS")
 dbManager = DBManager(ruta_basedatos)
@@ -41,7 +42,7 @@ def nuevo():
 
             return redirect(url_for("inicio"))
         else: 
-            return render_template("nuevo_movimiento.html", el_formulario = formulario)
+            return render_template("nuevo_movimiento.html", el_formulario = formulario, el_id=el_movimiento['id'])
         """
         Validar formulario
         si la validación es OK -> insertar registro en tabla y redireccionar a /
